@@ -13,21 +13,32 @@ def main():
     device = get_device_and_seed()
         
     # Create a DataLoaderLite instance
-    B, T = 4, 32  # batch size, block size
+    B, T = 4, 32  # we will adjust these later
     train_loader = DataLoaderLite(B, T)
 
+    # Initialize the GPT model
     model = GPT(GPTConfig())
     model.to(device)
 
     epochs = 50
 
-    optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
+    # TODO: Define an AdamW optimizer with a learning rate of 3e-4
+    optimizer = None 
+
+    # TODO: Create a training loop
     for i in range(epochs):
-        x, y = train_loader.next_batch()
-        x, y, = x.to(device), y.to(device)
         optimizer.zero_grad()
-        logits, loss = model(x, targets=y)
-        loss.backward()
+
+        # TODO: Get a batch of data from the DataLoaderLite
+        x, y = None
+        x, y, = x.to(device), y.to(device)
+
+        # TODO: Forward pass through the model
+        logits, loss = None
+
+        # TODO: Propagate the loss back through the model
+
+        
         optimizer.step()
         print(f"Epoch {i + 1}/{epochs}, Loss: {loss.item()}")
 

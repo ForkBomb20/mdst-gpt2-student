@@ -7,12 +7,11 @@
 ## Week 2
 - Explain transformer architecture
 - Implement gpt2.py (Overall structure)
-- Provide from_pretrained code
 
 ## Week 3
 - Explain Tokenization, Positional Encoding, Self Attention
 - Implement Block, MLP, Attention python files
-- Test of pretrained_gpt2.py (either give this to them or have them write it)
+- Test of pretrained_gpt2.py
 
 ## Week 4
 - Write DataLoader for traning on actual datasets
