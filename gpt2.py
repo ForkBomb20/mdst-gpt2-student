@@ -20,14 +20,11 @@ class GPT(nn.Module):
         super().__init__()
         self.config = config
         
-        # Define the transformer components
-        self.transformer = nn.ModuleDict(dict(
-            wte = nn.Embedding(config.vocab_size, config.n_embd),
-            wpe = nn.Embedding(config.block_size, config.n_embd),
-            h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
-            ln_f = nn.LayerNorm(config.n_embd),
-        ))
-        self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
+        # TODO: Define the transformer components
+
+
+        # TODO: Define the linear net
+        
 
         # Weight sharing scheme: tie the input and output embeddings ##ADDDED LATER##
         self.transformer.wte.weight = self.lm_head.weight
@@ -53,18 +50,28 @@ class GPT(nn.Module):
         B, T = idx.size()
         assert T <= self.config.block_size, "Cannot forward sequence of length %d, block size is only %d" % (T, self.config.block_size)
         # forward the GPT model
-        pos = torch.arange(T, device=idx.device, dtype=torch.long) # position ids
-        pos_emb = self.transformer.wpe(pos) # position embeddings
-        tok_emb = self.transformer.wte(idx) # token embeddings
-        x = tok_emb + pos_emb # combine token and position embeddings
+
+        # TODO: Add the forward logic
+
+        # Positions IDs
+
+        # Poisitonal embeddings
+
+        # Token embeddings
+
+        # Combine embeddings
+       
         # Forward through the transformer blocks
         for block in self.transformer.h:
             x = block(x)
-        # Final layer normalization
-        x = self.transformer.ln_f(x)
+
+        # TODO: Final layer normalization
+
+        x = ...
+
+
         # Output logits for the vocabulary
         logits = self.lm_head(x)
-
         ### ADDED LOSS PORTION ###
         if targets is not None:
             # Need to flatten out the logits and targets for cross-entropy loss
